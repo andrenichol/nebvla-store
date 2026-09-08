@@ -17,7 +17,7 @@ function App() {
   ];
 
   // Phone number placeholder, user will provide the actual one
-  const waNumber = "6281234567890";
+  const waNumber = "628212372200";
   const waText = "Halo%20min,%20saya%20mau%20order%20joki%20Nebvla";
   const waLink = `https://api.whatsapp.com/send?phone=${waNumber}&text=${waText}`;
 
@@ -138,6 +138,7 @@ function App() {
       <section id="services" className="section">
         <div className="container">
           <h2 className="section-title" data-aos="zoom-in" style={{ textTransform: 'uppercase', fontStyle: 'italic' }}>Layanan Kami</h2>
+          <p className="section-subtitle" data-aos="zoom-in" data-aos-delay="100">Pilih paket joki yang sesuai dengan kebutuhan push rank kamu.</p>
 
           <div className="services-grid new-layout">
             <div className="service-card-new glass" data-aos="fade-up">
@@ -225,7 +226,7 @@ function App() {
               <h3>Hubungi Kami</h3>
               <ul className="footer-links">
                 <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <FaWhatsapp style={{ color: '#25D366' }} /> WhatsApp: 0812-3456-7890
+                  <FaWhatsapp style={{ color: '#25D366' }} /> WhatsApp: 0821-2372-200
                 </li>
                 <li>Jam Operasional: 24 Jam</li>
               </ul>
