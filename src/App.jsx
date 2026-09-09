@@ -21,6 +21,10 @@ function App() {
   const waText = "Halo%20min,%20saya%20mau%20order%20joki%20Nebvla";
   const waLink = `https://api.whatsapp.com/send?phone=${waNumber}&text=${waText}`;
 
+  // Social media links (Silakan ganti dengan link Instagram dan TikTok yang sebenarnya)
+  const igLink = "https://instagram.com/nebvlastore";
+  const tiktokLink = "https://tiktok.com/@nebvlastore";
+
   useEffect(() => {
     // Initialize AOS animation library
     AOS.init({
@@ -231,9 +235,9 @@ function App() {
                 <li>Jam Operasional: 24 Jam</li>
               </ul>
               <div className="social-links" style={{ marginTop: '1.5rem' }}>
-                <a href="#" className="social-link"><FaInstagram /></a>
-                <a href="#" className="social-link"><FaTiktok /></a>
-                <a href={waLink} className="social-link"><FaWhatsapp /></a>
+                <a href={igLink} target="_blank" rel="noopener noreferrer" className="social-link"><FaInstagram /></a>
+                <a href={tiktokLink} target="_blank" rel="noopener noreferrer" className="social-link"><FaTiktok /></a>
+                <a href={waLink} target="_blank" rel="noopener noreferrer" className="social-link"><FaWhatsapp /></a>
               </div>
             </div>
           </div>
