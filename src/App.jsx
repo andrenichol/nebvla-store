@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { FaWhatsapp, FaInstagram, FaTiktok, FaBars, FaTimes, FaShieldAlt, FaBolt, FaUserNinja, FaHeadset, FaChartLine, FaGamepad, FaUsers, FaMedal, FaStar } from 'react-icons/fa';
+import React, { useState, useEffect, useRef } from 'react';
+import { FaWhatsapp, FaInstagram, FaTiktok, FaBars, FaTimes, FaShieldAlt, FaBolt, FaUserNinja, FaHeadset, FaChartLine, FaGamepad, FaUsers, FaMedal, FaStar, FaCheckCircle, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './App.css';
@@ -8,12 +8,21 @@ function App() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentBg, setCurrentBg] = useState(0);
+  const sliderRef = useRef(null);
+
+  const slideLeft = () => {
+    if (sliderRef.current) sliderRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+  };
+
+  const slideRight = () => {
+    if (sliderRef.current) sliderRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+  };
 
   // Daftar gambar background (Silakan ganti URL/path di bawah ini dengan gambar Mobile Legends Anda)
   const heroImages = [
-    "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80", // Foto 1
-    "https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80", // Foto 2
-    "https://images.unsplash.com/photo-1542751110-97427bbecf20?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"  // Foto 3
+    "/bg1.jpg", // Foto 1
+    "/bg2.jpg", // Foto 2
+    "/bg3.jpg"  // Foto 3
   ];
 
   // Phone number placeholder, user will provide the actual one
@@ -91,7 +100,7 @@ function App() {
         <div className="hero-overlay"></div>
         <div className="container hero-content">
           <h1 className="hero-title" data-aos="fade-up" data-aos-duration="1000">
-            JASA JOKI GAME <span className="text-gradient">MURAH, CEPAT & TERPERCAYA</span>
+            JASA JOKI MLBB <span style={{ color: 'var(--primary-color)' }}>MURAH, CEPAT & TERPERCAYA</span>
           </h1>
           <p className="hero-desc" data-aos="fade-up" data-aos-delay="200">
             Proses aman tanpa antri, 100% garansi naik rank. Tingkatkan tier Mobile Legends kamu hingga Immortal bersama pro player Nebvla!
@@ -122,7 +131,7 @@ function App() {
             <div className="feature-card glass" data-aos="fade-up" data-aos-delay="200">
               <FaBolt className="feature-icon" />
               <h3 className="feature-title">Proses Cepat</h3>
-              <p className="text-muted">Order langsung diproses tanpa antri. Cocok untuk push rank dadakan.</p>
+              <p className="text-muted">Order langsung diproses tanpa antri. Kualitas nomor satu.</p>
             </div>
             <div className="feature-card glass" data-aos="fade-up" data-aos-delay="300">
               <FaUserNinja className="feature-icon" />
@@ -133,6 +142,11 @@ function App() {
               <FaHeadset className="feature-icon" />
               <h3 className="feature-title">Layanan 24 Jam</h3>
               <p className="text-muted">Admin standby 24 jam untuk update progress dan menerima pesanan kapan saja.</p>
+            </div>
+            <div className="feature-card glass" data-aos="fade-up" data-aos-delay="500">
+              <FaCheckCircle className="feature-icon" />
+              <h3 className="feature-title">Terverifikasi</h3>
+              <p className="text-muted">Verifikasi oleh beberapa konten kreator dan BA team E-sport.</p>
             </div>
           </div>
         </div>
@@ -151,9 +165,9 @@ function App() {
               <p className="service-desc-new">Naikkan rank kamu dari tier apa pun hingga Immortal dengan player berpengalaman.</p>
             </div>
             <div className="service-card-new glass" data-aos="fade-up" data-aos-delay="100">
-              <FaGamepad className="service-icon-new" />
-              <h3 className="service-title-new">Joki Classic</h3>
-              <p className="service-desc-new">Selesaikan match Classic dengan cepat dan efisien. Cocok untuk kamu yang ingin push quest atau bermain fleksibel tanpa repot.</p>
+              <FaMedal className="service-icon-new" />
+              <h3 className="service-title-new">Joki MMR</h3>
+              <p className="service-desc-new">Tingkatkan poin MMR hero andalan kamu hingga mencapai Supreme / Top Global dengan winrate tinggi.</p>
             </div>
             <div className="service-card-new glass" data-aos="fade-up" data-aos-delay="200">
               <FaUsers className="service-icon-new" />
@@ -161,9 +175,9 @@ function App() {
               <p className="service-desc-new">Main bareng worker dari Nebvla Store. Belajar gameplay, rotasi, dan meta sambil naik rank dengan aman.</p>
             </div>
             <div className="service-card-new glass" data-aos="fade-up" data-aos-delay="300">
-              <FaMedal className="service-icon-new" />
-              <h3 className="service-title-new">Joki MMR</h3>
-              <p className="service-desc-new">Tingkatkan poin MMR hero andalan kamu hingga mencapai Supreme / Top Global dengan winrate tinggi.</p>
+              <FaGamepad className="service-icon-new" />
+              <h3 className="service-title-new">Joki Classic</h3>
+              <p className="service-desc-new">Selesaikan match Classic dengan cepat dan efisien. Cocok untuk kamu yang ingin push quest atau bermain fleksibel tanpa repot.</p>
             </div>
             <div className="service-card-new glass" data-aos="fade-up" data-aos-delay="400">
               <FaStar className="service-icon-new" />
@@ -174,30 +188,40 @@ function App() {
         </div>
       </section>
 
+      {/* Achievements Section */}
+      <section id="achievements" className="section" style={{ margin: '2rem 0' }}>
+        <div className="container">
+          <h2 className="section-title" data-aos="zoom-in">Pencapaian <span className="text-gradient">Kami</span></h2>
+          <p className="section-subtitle" data-aos="zoom-in" data-aos-delay="100">Bukti kehebatan dan dedikasi tim Nebvla Store di arena Land of Dawn.</p>
+          
+          <div className="achievement-img-container" data-aos="fade-up" data-aos-delay="200" style={{ maxWidth: '800px', margin: '0 auto', borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.1)', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
+            <img src="/prestasi.jpeg" alt="Prestasi Nebvla Store" style={{ width: '100%', height: 'auto', display: 'block' }} onError={(e) => {e.target.src = 'https://placehold.co/800x450/1a1625/ffffff?text=Foto+Prestasi+Belum+Ada'}} />
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials Section */}
       <section id="testimonials" className="section glass" style={{ margin: '2rem 0' }}>
         <div className="container">
           <h2 className="section-title" data-aos="flip-down">Testimoni <span className="text-gradient">Pelanggan</span></h2>
           <p className="section-subtitle" data-aos="flip-down" data-aos-delay="100">Bukti nyata dari ribuan klien Nebvla Store yang puas.</p>
 
-          <div className="testi-grid">
-            <div className="testi-card glass" data-aos="flip-left" data-aos-delay="200">
-              <div className="testi-quote">"</div>
-              <div style={{ height: '200px', background: 'rgba(0,0,0,0.3)', borderRadius: '8px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#a1a1aa' }}>
-                [Screenshot Chat 1]
-              </div>
-              <p style={{ fontStyle: 'italic', marginBottom: '1rem' }}>"Gila cepet banget naiknya, baru ditinggal tidur bentar udah Mythic aja. Thanks Nebvla!"</p>
-              <p className="testi-name">- @user_mlbb123</p>
+          <div className="testi-carousel-wrapper" data-aos="fade-up" data-aos-delay="200">
+            <button className="carousel-btn left" onClick={slideLeft}>
+              <FaChevronLeft />
+            </button>
+            
+            <div className="testi-carousel" ref={sliderRef}>
+              {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+                <div key={item} className="testi-carousel-item glass">
+                  <img src={`/testi${item}.jpeg`} alt={`Testimoni ${item}`} onError={(e) => {e.target.src = `https://placehold.co/300x500/1a1625/ffffff?text=Foto+Belum+Ada`}} />
+                </div>
+              ))}
             </div>
 
-            <div className="testi-card glass" data-aos="flip-right" data-aos-delay="400">
-              <div className="testi-quote">"</div>
-              <div style={{ height: '200px', background: 'rgba(0,0,0,0.3)', borderRadius: '8px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#a1a1aa' }}>
-                [Screenshot Chat 2]
-              </div>
-              <p style={{ fontStyle: 'italic', marginBottom: '1rem' }}>"Admin fast respon, workernya juga jago parah pas joki gendong. Recommended abis."</p>
-              <p className="testi-name">- Budi Santoso</p>
-            </div>
+            <button className="carousel-btn right" onClick={slideRight}>
+              <FaChevronRight />
+            </button>
           </div>
         </div>
       </section>
