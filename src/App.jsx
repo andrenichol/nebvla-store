@@ -120,7 +120,7 @@ function App() {
       {/* Pricelist Section */}
       <section id="pricelist" className="section" style={{ margin: '2rem 0' }}>
         <div className="container">
-          <h2 className="section-title" data-aos="fade-up">Pricelist <span className="text-gradient">Harga</span></h2>
+          <h2 className="section-title" data-aos="fade-up">Pricelist <span className="text-gradient">Joki MLBB</span></h2>
           
           <div className="prelist-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginTop: '2rem' }} data-aos="fade-up" data-aos-delay="200">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => {
