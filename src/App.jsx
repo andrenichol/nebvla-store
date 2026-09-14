@@ -64,9 +64,9 @@ function App() {
       {/* Navbar */}
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="container nav-container">
-          <div className="logo" data-aos="fade-right">
+          <div className="logo" data-aos="fade-right" style={{ fontSize: '1.2rem' }}>
             <img src={logoImg} alt="Nebvla Store Logo" className="logo-img" />
-            NEBVLA STORE
+            NEBVLASTORE
           </div>
 
           <button className="mobile-menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
@@ -75,9 +75,9 @@ function App() {
 
           <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
             <li><a href="#home" onClick={() => setMenuOpen(false)}>Home</a></li>
+            <li><a href="#pricelist" onClick={() => setMenuOpen(false)}>Pricelist</a></li>
             <li><a href="#features" onClick={() => setMenuOpen(false)}>Keunggulan</a></li>
             <li><a href="#services" onClick={() => setMenuOpen(false)}>Layanan</a></li>
-            <li><a href="#prelist" onClick={() => setMenuOpen(false)}>Prelist</a></li>
             <li><a href="#testimonials" onClick={() => setMenuOpen(false)}>Testimoni</a></li>
             <li data-aos="fade-left" data-aos-delay="200">
               <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ padding: '0.5rem 1rem' }}>
@@ -117,10 +117,31 @@ function App() {
         </div>
       </section>
 
+      {/* Pricelist Section */}
+      <section id="pricelist" className="section" style={{ margin: '2rem 0' }}>
+        <div className="container">
+          <h2 className="section-title" data-aos="fade-up">Pricelist <span className="text-gradient">Harga</span></h2>
+          
+          <div className="prelist-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginTop: '2rem' }} data-aos="fade-up" data-aos-delay="200">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => {
+              let ext = 'jpeg';
+              if ((item >= 4 && item <= 6) || item === 10) {
+                ext = 'PNG';
+              }
+              return (
+                <div key={item} className="prelist-item glass" style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.1)', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
+                  <img src={`/prelist${item}.${ext}`} alt={`Pricelist ${item}`} style={{ width: '100%', height: 'auto', display: 'block', aspectRatio: '3/4', objectFit: 'cover' }} onError={(e) => {e.target.src = `https://placehold.co/600x800/1a1625/ffffff?text=Foto+Pricelist+${item}`}} />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section id="features" className="section glass" style={{ margin: '2rem 0' }}>
         <div className="container">
-          <h2 className="section-title" data-aos="fade-down">Kenapa Pilih <span className="text-gradient">Nebvla Store?</span></h2>
+          <h2 className="section-title" data-aos="fade-down">Kenapa Pilih <span className="text-gradient">NEBVLASTORE?</span></h2>
           <p className="section-subtitle" data-aos="fade-down" data-aos-delay="100">Alasan mengapa ribuan player mempercayakan akunnya kepada kami.</p>
 
           <div className="features-grid">
@@ -201,28 +222,6 @@ function App() {
         </div>
       </section>
 
-      {/* Prelist Section */}
-      <section id="prelist" className="section" style={{ margin: '2rem 0' }}>
-        <div className="container">
-          <h2 className="section-title" data-aos="fade-up">Prelist <span className="text-gradient">Harga</span></h2>
-          <p className="section-subtitle" data-aos="fade-up" data-aos-delay="100">Daftar harga layanan joki yang kami tawarkan.</p>
-          
-          <div className="prelist-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginTop: '2rem' }} data-aos="fade-up" data-aos-delay="200">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => {
-              let ext = 'jpeg';
-              if ((item >= 4 && item <= 6) || item === 10) {
-                ext = 'PNG';
-              }
-              return (
-                <div key={item} className="prelist-item glass" style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.1)', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
-                  <img src={`/prelist${item}.${ext}`} alt={`Prelist ${item}`} style={{ width: '100%', height: 'auto', display: 'block', aspectRatio: '3/4', objectFit: 'cover' }} onError={(e) => {e.target.src = `https://placehold.co/600x800/1a1625/ffffff?text=Foto+Prelist+${item}`}} />
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
       {/* Testimonials Section */}
       <section id="testimonials" className="section glass" style={{ margin: '2rem 0' }}>
         <div className="container">
@@ -254,9 +253,9 @@ function App() {
         <div className="container">
           <div className="footer-content">
             <div className="footer-col" data-aos="fade-up" data-aos-delay="100">
-              <div className="logo" style={{ marginBottom: '1rem' }}>
+              <div className="logo" style={{ marginBottom: '1rem', fontSize: '1.2rem' }}>
                 <img src={logoImg} alt="Nebvla Store Logo" className="logo-img" />
-                NEBVLA STORE
+                NEBVLASTORE
               </div>
               <p className="text-muted" style={{ maxWidth: '300px' }}>
                 Layanan joki game profesional, cepat, murah, dan 100% aman. Solusi terbaik untuk kebutuhan push rank kamu.
@@ -267,9 +266,9 @@ function App() {
               <h3>Tautan Cepat</h3>
               <ul className="footer-links">
                 <li><a href="#home">Home</a></li>
+                <li><a href="#pricelist">Pricelist</a></li>
                 <li><a href="#features">Keunggulan</a></li>
                 <li><a href="#services">Layanan</a></li>
-                <li><a href="#prelist">Prelist</a></li>
                 <li><a href="#testimonials">Testimoni</a></li>
               </ul>
             </div>
