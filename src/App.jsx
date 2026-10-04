@@ -6,7 +6,7 @@ import './App.css';
 import logoImg from './assets/logo.png';
 
 const AutoFormatImage = ({ basePath, alt, fallbackText, style, className }) => {
-  const formats = ['jpg', 'jpeg', 'png', 'webp', 'JPG', 'JPEG', 'PNG', 'WEBP'];
+  const formats = ['jpg', 'jpeg', 'png', 'webp', 'heic', 'JPG', 'JPEG', 'PNG', 'WEBP', 'HEIC'];
   const [formatIndex, setFormatIndex] = useState(0);
 
   const handleError = (e) => {
@@ -19,12 +19,12 @@ const AutoFormatImage = ({ basePath, alt, fallbackText, style, className }) => {
   };
 
   return (
-    <img 
-      src={`${basePath}.${formats[formatIndex]}`} 
-      alt={alt} 
+    <img
+      src={`${basePath}.${formats[formatIndex]}`}
+      alt={alt}
       style={style}
       className={className}
-      onError={handleError} 
+      onError={handleError}
     />
   );
 };
@@ -146,16 +146,16 @@ function App() {
       <section id="pricelist" className="section" style={{ margin: '2rem 0' }}>
         <div className="container">
           <h2 className="section-title" data-aos="fade-up">Pricelist <span className="text-gradient">Joki MLBB</span></h2>
-          
+
           <div className="prelist-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginTop: '2rem' }} data-aos="fade-up" data-aos-delay="200">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => {
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((item) => {
               return (
                 <div key={item} className="prelist-item glass" style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.1)', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
-                  <AutoFormatImage 
-                    basePath={`/prelist${item}`} 
-                    alt={`Pricelist ${item}`} 
+                  <AutoFormatImage
+                    basePath={`/prelist${item}`}
+                    alt={`Pricelist ${item}`}
                     fallbackText={`Foto+Pricelist+${item}`}
-                    style={{ width: '100%', height: 'auto', display: 'block', aspectRatio: '3/4', objectFit: 'cover' }} 
+                    style={{ width: '100%', height: 'auto', display: 'block', aspectRatio: '3/4', objectFit: 'cover' }}
                   />
                 </div>
               );
@@ -241,9 +241,18 @@ function App() {
         <div className="container">
           <h2 className="section-title" data-aos="zoom-in">Pencapaian <span className="text-gradient">Kami</span></h2>
           <p className="section-subtitle" data-aos="zoom-in" data-aos-delay="100">Bukti kehebatan dan dedikasi tim Nebvla Store di arena Land of Dawn.</p>
-          
-          <div className="achievement-img-container" data-aos="fade-up" data-aos-delay="200" style={{ maxWidth: '800px', margin: '0 auto', borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.1)', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
-            <img src="/prestasi.jpeg" alt="Prestasi Nebvla Store" style={{ width: '100%', height: 'auto', display: 'block' }} onError={(e) => {e.target.src = 'https://placehold.co/800x450/1a1625/ffffff?text=Foto+Prestasi+Belum+Ada'}} />
+
+          <div className="achievements-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '2rem' }} data-aos="fade-up" data-aos-delay="200">
+            {[1, 2].map((item) => (
+              <div key={item} className="achievement-img-container" style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.1)', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
+                <AutoFormatImage
+                  basePath={`/prestasi${item}`}
+                  alt={`Prestasi Nebvla Store ${item}`}
+                  style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
+                  fallbackText={`Foto+Prestasi+${item}`}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -258,13 +267,13 @@ function App() {
             <button className="carousel-btn left" onClick={slideLeft}>
               <FaChevronLeft />
             </button>
-            
+
             <div className="testi-carousel" ref={sliderRef}>
               {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
                 <div key={item} className="testi-carousel-item glass">
-                  <AutoFormatImage 
-                    basePath={`/testi${item}`} 
-                    alt={`Testimoni ${item}`} 
+                  <AutoFormatImage
+                    basePath={`/testi${item}`}
+                    alt={`Testimoni ${item}`}
                     fallbackText="Foto+Belum+Ada"
                   />
                 </div>
