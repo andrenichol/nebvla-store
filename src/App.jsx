@@ -4,6 +4,31 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './App.css';
 import logoImg from './assets/logo.png';
+
+const AutoFormatImage = ({ basePath, alt, fallbackText, style, className }) => {
+  const formats = ['jpg', 'jpeg', 'png', 'webp', 'JPG', 'JPEG', 'PNG', 'WEBP'];
+  const [formatIndex, setFormatIndex] = useState(0);
+
+  const handleError = (e) => {
+    if (formatIndex < formats.length - 1) {
+      setFormatIndex(prev => prev + 1);
+    } else {
+      e.target.onError = null;
+      e.target.src = `https://placehold.co/600x800/1a1625/ffffff?text=${fallbackText}`;
+    }
+  };
+
+  return (
+    <img 
+      src={`${basePath}.${formats[formatIndex]}`} 
+      alt={alt} 
+      style={style}
+      className={className}
+      onError={handleError} 
+    />
+  );
+};
+
 function App() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -124,13 +149,14 @@ function App() {
           
           <div className="prelist-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginTop: '2rem' }} data-aos="fade-up" data-aos-delay="200">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => {
-              let ext = 'jpeg';
-              if ((item >= 4 && item <= 6) || item === 10) {
-                ext = 'PNG';
-              }
               return (
                 <div key={item} className="prelist-item glass" style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.1)', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
-                  <img src={`/prelist${item}.${ext}`} alt={`Pricelist ${item}`} style={{ width: '100%', height: 'auto', display: 'block', aspectRatio: '3/4', objectFit: 'cover' }} onError={(e) => {e.target.src = `https://placehold.co/600x800/1a1625/ffffff?text=Foto+Pricelist+${item}`}} />
+                  <AutoFormatImage 
+                    basePath={`/prelist${item}`} 
+                    alt={`Pricelist ${item}`} 
+                    fallbackText={`Foto+Pricelist+${item}`}
+                    style={{ width: '100%', height: 'auto', display: 'block', aspectRatio: '3/4', objectFit: 'cover' }} 
+                  />
                 </div>
               );
             })}
@@ -236,7 +262,11 @@ function App() {
             <div className="testi-carousel" ref={sliderRef}>
               {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
                 <div key={item} className="testi-carousel-item glass">
-                  <img src={`/testi${item}.jpeg`} alt={`Testimoni ${item}`} onError={(e) => {e.target.src = `https://placehold.co/300x500/1a1625/ffffff?text=Foto+Belum+Ada`}} />
+                  <AutoFormatImage 
+                    basePath={`/testi${item}`} 
+                    alt={`Testimoni ${item}`} 
+                    fallbackText="Foto+Belum+Ada"
+                  />
                 </div>
               ))}
             </div>
