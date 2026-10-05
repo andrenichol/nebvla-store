@@ -148,7 +148,7 @@ function App() {
           <h2 className="section-title" data-aos="fade-up">Pricelist <span className="text-gradient">Joki MLBB</span></h2>
 
           <div className="prelist-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginTop: '2rem' }} data-aos="fade-up" data-aos-delay="200">
-            {[1, 2, 4, 5, 6, 7, 8, 9, 10, 11].map((item) => {
+            {[1, 2, 8, 9, 11].map((item) => {
               return (
                 <div key={item} className="prelist-item glass" style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.1)', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
                   <AutoFormatImage
